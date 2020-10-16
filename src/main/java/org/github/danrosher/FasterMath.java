@@ -42,11 +42,11 @@ public class FasterMath {
         return pip2 - asin(x);
     }
 
+    //Following for completion for Inverse trigonometric functions
     public static double atan(double x) {
         return asin(x/Math.sqrt(1 + x*x));
     }
 
-    //Following for completion for Inverse trigonometric functions
     public static double acot(double x) {
         return pip2 - atan(x);
     }
