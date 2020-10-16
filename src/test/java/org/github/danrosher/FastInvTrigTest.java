@@ -62,7 +62,6 @@ class FastInvTrigTest {
     @Test
     void distanceAccuracy(){
         final double R =   6371008.8;//meters google:standard mean earth radius
-
         //52.024534,-0.490683
         //52.027135,-0.490281
         //290.72 m (accurate from https://www.movable-type.co.uk/scripts/latlong-vincenty.html)
