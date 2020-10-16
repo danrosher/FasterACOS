@@ -106,7 +106,7 @@ public class FastInvTrigBenchmark {
     }
 
     @Benchmark
-    public void haversineBH(Blackhole bh){
+    public void haversineBM(Blackhole bh){
         for (int i = 0; i < num_points; i++) {
             double[] p = points[i];
             bh.consume(distHaversineRAD(p[0], p[1], q[0], q[1]));
@@ -122,7 +122,7 @@ public class FastInvTrigBenchmark {
     }
 
     @Benchmark
-    public void mathAcosBH(Blackhole bh){
+    public void mathAcosBM(Blackhole bh){
         for (int i = 0; i < num_points; i++) {
             double[] p = NVectorPoints[i];
             bh.consume(Math.acos(p[0] * q_nvec[0] + p[1] * q_nvec[1] + p[2] * q_nvec[2]));
@@ -130,7 +130,7 @@ public class FastInvTrigBenchmark {
     }
 
     @Benchmark
-    public void fastMathAcosBH(Blackhole bh){
+    public void fastMathAcosBM(Blackhole bh){
         for (int i = 0; i < num_points; i++) {
             double[] p = NVectorPoints[i];
             bh.consume(FastMath.acos(p[0] * q_nvec[0] + p[1] * q_nvec[1] + p[2] * q_nvec[2]));
