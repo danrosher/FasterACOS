@@ -30,6 +30,23 @@ public class FastInvTrig {
         return acc;
     }
 
+    // split domain for faster convergence i.e. fewer maclaurin terms required
+    // see https://www.wolframalpha.com/input/?i=arcsin%28sqrt%281-x%5E2%29%29-acos%28x%29 for x > 0
+    // arcsin(sqrt(1-x^2)) = acos(x) for x > 0
+    // arcsin(sqrt(1-x^2)) = acos(x) = pi/2 - arcsin(x)  for x > 0
+    // arcsin(sqrt(1-x^2)) = pi/2 - arcsin(x)  for x > 0
+    // arcsin(x) = pi/2 - arcsin(sqrt(1-x^2)) for x > 0 .... 1
+    //
+    // see https://www.wolframalpha.com/input/?i=arcsin%28x%29+-+arcsin%28sqrt%281-x%5E2%29%29+%2B+pi%2F2+ for x < 0
+    // arcsin(sqrt(1-x^2)) = pi-acos(x) for x < 0
+    // arcsin(sqrt(1-x^2)) = pi-(pi/2 - arcsin(x)) for x < 0
+    // arcsin(sqrt(1-x^2)) = pi/2 + arcsin(x)  for x < 0
+    // arcsin(x) = arcsin(sqrt(1-x^2)) - pi/2  for x < 0 .... 2
+
+    // within domain [-SQRT2 <= x <=  SQRT2] use arcsin(x). outside this range use formulae above.
+    // so that convergence is faster
+    //This way we can transform input x into [-1/sqrt(2),1/sqrt(2)], where convergence is relatively fast.
+
     public static double asin(double x) {
         if (x > SQRT2)
             return pip2 - asin2(Math.sqrt(1 - (x * x)));
