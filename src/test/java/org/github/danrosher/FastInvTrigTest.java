@@ -69,7 +69,7 @@ class FastInvTrigTest {
         double[] a = latLongToNVector(52.024534, -0.490683);
         double[] b = latLongToNVector(52.027135,-0.490281);
         double d = R * FastInvTrig.acos(a[0] * b[0] + a[1] * b[1] + a[2] * b[2]);
-        assertTrue(d - 290.72 < 10);
+        assertTrue(d - 290.72 < 10); //less than 10m accuracy
 
         //52.024534,-0.490683
         //51.480331,-0.198885
@@ -77,7 +77,7 @@ class FastInvTrigTest {
         a = latLongToNVector(52.024534,-0.490683);
         b = latLongToNVector(51.480331,-0.198885);
         d = R * FastInvTrig.acos(a[0] * b[0] + a[1] * b[1] + a[2] * b[2]);
-        assertTrue(d - 63814.266 < 10);
+        assertTrue(d - 63814.266 < 10);  //less than 10m accuracy
 
     }
 }
