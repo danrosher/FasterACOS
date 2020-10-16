@@ -20,13 +20,13 @@ import org.openjdk.jmh.runner.options.OptionsBuilder;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
-import org.github.danrosher.FasterMath;
+import org.github.danrosher.FastInvTrig;
 
 @BenchmarkMode(Mode.AverageTime)
 @OutputTimeUnit(TimeUnit.MILLISECONDS)
 @State(Scope.Benchmark)
 @Fork(value = 2, jvmArgs = {"-Xms2G", "-Xmx2G"})
-public class FasterMathBenchmark {
+public class FastInvTrigBenchmark {
 
     static final Random r = new Random();
 
@@ -86,7 +86,7 @@ public class FasterMathBenchmark {
     public static void main(String[] args) throws RunnerException {
 
         Options opt = new OptionsBuilder()
-            .include(FasterMathBenchmark.class.getSimpleName())
+            .include(FastInvTrigBenchmark.class.getSimpleName())
             .forks(1)
             .build();
         new Runner(opt).run();
@@ -117,7 +117,7 @@ public class FasterMathBenchmark {
     public void acosBM(Blackhole bh) {
         for (int i = 0; i < num_points; i++) {
             double[] p = NVectorPoints[i];
-            bh.consume(FasterMath.acos(p[0] * q_nvec[0] + p[1] * q_nvec[1] + p[2] * q_nvec[2]));
+            bh.consume(FastInvTrig.acos(p[0] * q_nvec[0] + p[1] * q_nvec[1] + p[2] * q_nvec[2]));
         }
     }
 

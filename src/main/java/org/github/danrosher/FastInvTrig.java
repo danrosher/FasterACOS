@@ -1,6 +1,6 @@
 package org.github.danrosher;
 
-public class FasterMath {
+public class FastInvTrig {
 
     final static double pip2 = Math.PI / 2.0;
     static final double SQRT2 = 1.0 / Math.sqrt(2.0);
