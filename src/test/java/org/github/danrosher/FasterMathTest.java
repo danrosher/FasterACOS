@@ -16,6 +16,15 @@ class FasterMathTest {
 
     static double[][] points = new double[num_points][2];
 
+    public static double[] latLongToNVector(double lat, double lon) {
+        lat = deg2rad(lat);
+        lon = deg2rad(lon);
+        double x = Math.cos(lat) * Math.cos(lon);
+        double y = Math.cos(lat) * Math.sin(lon);
+        double z = Math.sin(lat);
+        return new double[]{x, y, z};
+    }
+
     public static double[] generateRandomPoint() {
         double u = r.nextDouble();
         double v = r.nextDouble();
@@ -52,6 +61,23 @@ class FasterMathTest {
 
     @Test
     void distanceAccuracy(){
+        final double R =   6371008.8;//meters google:standard mean earth radius
+
+        //52.024534,-0.490683
+        //52.027135,-0.490281
+        //290.72 m (accurate from https://www.movable-type.co.uk/scripts/latlong-vincenty.html)
+        double[] a = latLongToNVector(52.024534, -0.490683);
+        double[] b = latLongToNVector(52.027135,-0.490281);
+        double d = R * FasterMath.acos(a[0] * b[0] + a[1] * b[1] + a[2] * b[2]);
+        assertTrue(d - 290.72 < 10);
+
+        //52.024534,-0.490683
+        //51.480331,-0.198885
+        //63814.266 m (accurate from https://www.movable-type.co.uk/scripts/latlong-vincenty.html)
+        a = latLongToNVector(52.024534,-0.490683);
+        b = latLongToNVector(51.480331,-0.198885);
+        d = R * FasterMath.acos(a[0] * b[0] + a[1] * b[1] + a[2] * b[2]);
+        assertTrue(d - 63814.266 < 10);
 
     }
 }
