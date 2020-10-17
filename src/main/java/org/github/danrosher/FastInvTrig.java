@@ -56,12 +56,12 @@ public class FastInvTrig {
     }
 
     public static double acos(double x) {
-        return pip2 - asin(x);
+        return Math.abs(x) <= SQRT2 ? pip2 - asin2(x) : asin2(Math.sqrt(1 - (x * x)));
     }
 
     //Following for completion for Inverse trigonometric functions
     public static double atan(double x) {
-        return asin(x/Math.sqrt(1 + x*x));
+        return asin(x / Math.sqrt(1 + x * x));
     }
 
     public static double acot(double x) {
@@ -69,7 +69,7 @@ public class FastInvTrig {
     }
 
     public static double asec(double x) {
-        return acos(1/x);
+        return acos(1 / x);
     }
 
     public static double acsc(double x) {
