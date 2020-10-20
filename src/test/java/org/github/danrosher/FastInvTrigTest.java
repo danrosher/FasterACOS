@@ -1,5 +1,6 @@
 package org.github.danrosher;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -59,6 +60,17 @@ class FastInvTrigTest {
         }
     }
 
+    @Test
+    void acosN() {
+        for(double i=-1;i<=1;i = i + 0.00001){
+            assertTrue(FastInvTrig.acos(i,100) - Math.acos(i) <= EPSILON);
+        }
+    }
+
+    @Test
+    void acosInvalid() {
+        Assertions.assertThrows(IllegalArgumentException.class,() -> FastInvTrig.acos(0,101),"Expected IllegalArgumentException");
+    }
 
     @Test
     void distanceAccuracy(){

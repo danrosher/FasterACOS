@@ -32,6 +32,14 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>8</source>
+                    <target>8</target>
+                </configuration>
+            </plugin>
 
 
         </plugins>
@@ -47,7 +55,6 @@
             <artifactId>jmh-core</artifactId>
             <version>1.21</version>
         </dependency>
-
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
@@ -55,6 +62,5 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
-
 
 </project>

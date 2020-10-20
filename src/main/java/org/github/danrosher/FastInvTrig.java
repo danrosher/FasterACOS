@@ -1,12 +1,15 @@
 package org.github.danrosher;
 
+import com.sun.javaws.exceptions.InvalidArgumentException;
+
 public class FastInvTrig {
 
     final static double pip2 = Math.PI / 2.0;
     static final double SQRT2 = 1.0 / Math.sqrt(2.0);
 
     final static double[] TABLE;
-    final static int MAX_TERMS = 10;
+    final static int MAX_TERMS = 100;
+    final static int DEF_TERMS = 10;
 
     static {
         TABLE = new double[MAX_TERMS];
@@ -19,11 +22,13 @@ public class FastInvTrig {
         }
     }
 
-    private static double asin2(double x) {
+    private static double asin2(double x, int n_terms) {
+        if( n_terms > MAX_TERMS)
+            throw new IllegalArgumentException("Too many terms");
         double acc = x;
         double tempExp = x;
         double x2 = x * x;
-        for (int n = 1; n < MAX_TERMS; n++) {
+        for (int n = 1; n < n_terms; n++) {
             tempExp *= x2;
             acc += TABLE[n] * tempExp;
         }
@@ -47,16 +52,24 @@ public class FastInvTrig {
     // so that convergence is faster
     //This way we can transform input x into [-1/sqrt(2),1/sqrt(2)], where convergence is relatively fast.
 
-    public static double asin(double x) {
+    public static double asin(double x,int n_terms) {
         if (x > SQRT2)
-            return pip2 - asin2(Math.sqrt(1 - (x * x)));
+            return pip2 - asin2(Math.sqrt(1 - (x * x)),n_terms);
         else if (Math.abs(x) <= SQRT2)
-            return asin2(x);
-        return asin2(Math.sqrt(1 - (x * x))) - pip2;
+            return asin2(x,n_terms);
+        return asin2(Math.sqrt(1 - (x * x)),n_terms) - pip2;
     }
 
-    public static double acos(double x) {
-        return Math.abs(x) <= SQRT2 ? pip2 - asin2(x) : asin2(Math.sqrt(1 - (x * x)));
+    public static double asin(double x){
+        return asin(x,DEF_TERMS);
+    }
+
+    public static double acos(double x,int n_terms) {
+        return Math.abs(x) <= SQRT2 ? pip2 - asin2(x,n_terms) : asin2(Math.sqrt(1 - (x * x)),n_terms);
+    }
+
+    public static double acos(double x){
+        return acos(x,DEF_TERMS);
     }
 
     //Following for completion for Inverse trigonometric functions
