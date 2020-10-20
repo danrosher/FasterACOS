@@ -90,7 +90,6 @@ class FastInvTrigTest {
         a = latLongToNVector(52.024534,-0.490683);
         b = latLongToNVector(51.480331,-0.198885);
         d = R * FastInvTrig.acos(a[0] * b[0] + a[1] * b[1] + a[2] * b[2]);
-        assertTrue(Math.abs(d - 63779) < 100);  //less than 100m accuracy
-
+        assertTrue(Math.abs(d - 63814.266) < 100);  //less than 100m accuracy
     }
 }
