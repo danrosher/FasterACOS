@@ -1,7 +1,7 @@
 # FasterInvTrig
 
 Faster implementation of [Inverse trigonometric functions](https://en.wikipedia.org/wiki/Inverse_trigonometric_functions) 
-than Math.* or FastMath.* with the caveat of accuracy.
+than [Math.*](https://docs.oracle.com/javase/7/docs/api/java/lang/Math.html#acos(double)) or [FastMath.*](https://commons.apache.org/proper/commons-math/javadocs/api-3.3/org/apache/commons/math3/util/FastMath.html#acos(double)) with the caveat of accuracy.
 
 Benchmark for great circle distance for 2m random points with [N-Vector](https://en.wikipedia.org/wiki/N-vector#Example:_Great_circle_distance)
 shows gains from 5.7-15 times other methods.
