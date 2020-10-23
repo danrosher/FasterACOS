@@ -10,7 +10,7 @@ Implementation calculates and stores the maclaurin series co-efficients for asin
 with identity functions for faster convergence (see code comments). 
 All functions use this series.
 
-###BenchMark Results
+### BenchMark Results
 
 ```
 Benchmark                            (num_points)  Mode  Cnt    Score   Error  Units
