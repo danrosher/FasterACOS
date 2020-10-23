@@ -7,7 +7,9 @@ Benchmark for great circle distance for 2m random points with [N-Vector](https:/
 shows gains from 5.7-15 times other methods.
 
 Implementation calculates and stores the maclaurin series co-efficients for asin, 
-with identity functions for faster convergence (see code comments). 
+with identity functions for faster convergence (see code comments). Faster convergence means
+less terms required for the same accuracy.
+
 All functions use this series.
 
 ### BenchMark Results
